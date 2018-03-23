@@ -15,7 +15,7 @@
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
 
-	var box = createBox();
+	var colors = ["red","green","blue","black"];
 	var boxes = [];
 
 	var maxSize = 40;
@@ -29,7 +29,7 @@
 			x: randomNum(canvas.width - maxSize),
 			y: randomNum(canvas.height - maxSize),
 			size: randomNum(maxSize) + 10,
-			color: "black"
+			color: colors[randomNum(colors.length)]
 		}
 	}
 
