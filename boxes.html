@@ -19,6 +19,7 @@
 	var boxes = [];
 
 	var maxSize = 40;
+	var maxDuration = 100;
 
 	function randomNum(n) {
 		return Math.floor(Math.random() * n);
@@ -29,7 +30,8 @@
 			x: randomNum(canvas.width - maxSize),
 			y: randomNum(canvas.height - maxSize),
 			size: randomNum(maxSize) + 10,
-			color: colors[randomNum(colors.length)]
+			color: colors[randomNum(colors.length)],
+			duration: randomNum(maxDuration) + 10
 		}
 	}
 
