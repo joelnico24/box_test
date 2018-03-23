@@ -18,8 +18,11 @@
 	var colors = ["red","green","blue","black"];
 	var boxes = [];
 
-	var maxSize = 40;
-	var maxDuration = 100;
+	var gameSettings = {
+		maxSize: 40,
+		maxDuration: 100,
+		numberOfBoxes: 10
+	}
 
 	function randomNum(n) {
 		return Math.floor(Math.random() * n);
@@ -27,11 +30,11 @@
 
 	function createBox() {
 		return {
-			x: randomNum(canvas.width - maxSize),
-			y: randomNum(canvas.height - maxSize),
-			size: randomNum(maxSize) + 10,
+			x: randomNum(canvas.width - gameSettings.maxSize),
+			y: randomNum(canvas.height - gameSettings.maxSize),
+			size: randomNum(gameSettings.maxSize) + 10,
 			color: colors[randomNum(colors.length)],
-			duration: randomNum(maxDuration) + 10
+			duration: randomNum(gameSettings.maxDuration) + 10
 		}
 	}
 
@@ -64,7 +67,7 @@
 		requestAnimationFrame(runGame);
 	}
 
-	createBoxes(3);
+	createBoxes(gameSettings.numberOfBoxes);
 	runGame();
 </script>
 </body>
