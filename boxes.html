@@ -48,8 +48,20 @@
 		}
 	}
 
+	function reduceDuration() {
+		for (i = 0; i < boxes.length; i++) {
+			boxes[i].duration--;
+		}
+	}
+
+	function runGame() {
+		drawBoxes();
+		reduceDuration();
+		requestAnimationFrame(runGame);
+	}
+
 	createBoxes(3);
-	drawBoxes();
+	runGame();
 </script>
 </body>
 </html>
