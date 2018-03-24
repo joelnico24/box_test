@@ -21,7 +21,8 @@
 	var gameSettings = {
 		maxSize: 40,
 		maxDuration: 100,
-		numberOfCircles: 10
+		numberOfCircles: 10,
+		maxSpeed: 5
 	}
 
 	function randomNum(n) {
@@ -34,7 +35,8 @@
 			y: randomNum(canvas.height - gameSettings.maxSize),
 			size: randomNum(gameSettings.maxSize) + 10,
 			color: colors[randomNum(colors.length)],
-			duration: randomNum(gameSettings.maxDuration) + 10
+			duration: randomNum(gameSettings.maxDuration) + 10,
+			speed: randomNum(gameSettings.maxSpeed) + 1
 		}
 	}
 
@@ -51,6 +53,8 @@
 			context.arc(circles[i].x,circles[i].y,circles[i].size,0,2 * Math.PI);
 			context.fill();
 			context.stroke();
+
+			circles[i].x += circles[i].speed;
 		}
 	}
 
