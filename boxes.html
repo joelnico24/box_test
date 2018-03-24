@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>boxes</title>
+	<title>circles</title>
 	<style type="text/css">
 		canvas {
 			border: solid 1px black;
@@ -16,19 +16,19 @@
 	var context = canvas.getContext("2d");
 
 	var colors = ["red","green","blue","black"];
-	var boxes = [];
+	var circles = [];
 
 	var gameSettings = {
 		maxSize: 40,
 		maxDuration: 100,
-		numberOfBoxes: 10
+		numberOfCircles: 10
 	}
 
 	function randomNum(n) {
 		return Math.floor(Math.random() * n);
 	}
 
-	function createBox() {
+	function createCircle() {
 		return {
 			x: randomNum(canvas.width - gameSettings.maxSize),
 			y: randomNum(canvas.height - gameSettings.maxSize),
@@ -38,36 +38,39 @@
 		}
 	}
 
-	function createBoxes(n) {
+	function createCircles(n) {
 		for (i = 0; i < n; i++) {
-			boxes.push(createBox());
+			circles.push(createCircle());
 		}
 	}
 
-	function drawBoxes() {
-		for (i = 0; i < boxes.length; i++) {
-			context.fillStyle = boxes[i].color;
-			context.fillRect(boxes[i].x,boxes[i].y,boxes[i].size,boxes[i].size);
+	function drawCircles() {
+		for (i = 0; i < circles.length; i++) {
+			context.beginPath();
+			context.fillStyle = circles[i].color;
+			context.arc(circles[i].x,circles[i].y,circles[i].size,0,2 * Math.PI);
+			context.fill();
+			context.stroke();
 		}
 	}
 
 	function reduceDuration() {
-		for (i = 0; i < boxes.length; i++) {
-			boxes[i].duration--;
-			if (boxes[i].duration <= 0) {
-				boxes[i] = createBox();
+		for (i = 0; i < circles.length; i++) {
+			circles[i].duration--;
+			if (circles[i].duration <= 0) {
+				circles[i] = createCircle();
 			}
 		}
 	}
 
 	function runGame() {
 		context.clearRect(0,0,canvas.width,canvas.height);
-		drawBoxes();
+		drawCircles();
 		reduceDuration();
 		requestAnimationFrame(runGame);
 	}
 
-	createBoxes(gameSettings.numberOfBoxes);
+	createCircles(gameSettings.numberOfCircles);
 	runGame();
 </script>
 </body>
