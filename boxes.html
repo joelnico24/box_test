@@ -36,7 +36,8 @@
 			size: randomNum(gameSettings.maxSize) + 10,
 			color: colors[randomNum(colors.length)],
 			duration: randomNum(gameSettings.maxDuration) + 10,
-			speed: randomNum(gameSettings.maxSpeed) + 1
+			speed: randomNum(gameSettings.maxSpeed) + 1,
+			driftDirection: randomNum(2)
 		}
 	}
 
@@ -54,7 +55,11 @@
 			context.fill();
 			context.stroke();
 
-			circles[i].x += circles[i].speed;
+			if (circles[i].driftDirection == 0) {
+				circles[i].x += circles[i].speed;
+			} else if (circles[i].driftDirection == 1) {
+				circles[i].x -= circles[i].speed;
+			}
 		}
 	}
 
