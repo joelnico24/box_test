@@ -9,7 +9,7 @@
 	</style>
 </head>
 <body>
-<canvas id="canvas" width="600" height="400"></canvas>
+<canvas id="canvas" width="1250" height="655"></canvas>
 
 <script type="text/javascript">
 	var canvas = document.getElementById("canvas");
@@ -20,8 +20,8 @@
 
 	var gameSettings = {
 		maxSize: 40,
-		maxDuration: 100,
-		numberOfCircles: 10,
+		maxDuration: 300,
+		numberOfCircles: 100,
 		maxSpeed: 5
 	}
 
@@ -37,7 +37,7 @@
 			color: colors[randomNum(colors.length)],
 			duration: randomNum(gameSettings.maxDuration) + 10,
 			speed: randomNum(gameSettings.maxSpeed) + 1,
-			driftDirection: randomNum(2)
+			driftDirection: randomNum(4)
 		}
 	}
 
@@ -59,6 +59,10 @@
 				circles[i].x += circles[i].speed;
 			} else if (circles[i].driftDirection == 1) {
 				circles[i].x -= circles[i].speed;
+			} else if (circles[i].driftDirection == 2) {
+				circles[i].y += circles[i].speed;
+			} else if (circles[i].driftDirection == 3) {
+				circles[i].y -= circles[i].speed;
 			}
 		}
 	}
