@@ -12,13 +12,16 @@
 <canvas id="canvas" width="1250" height="655"></canvas>
 
 <script type="text/javascript">
+	//create the canvas
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
 
+	//create the arrays
 	var colors = ["red","green","blue","black"];
 	var circles = [];
 
 	var gameSettings = {
+		//create the settings for the circles
 		maxSize: 40,
 		maxDuration: 300,
 		numberOfCircles: 100,
@@ -26,11 +29,13 @@
 	}
 
 	function randomNum(n) {
+		//return a random number
 		return Math.floor(Math.random() * n);
 	}
 
 	function createCircle() {
 		return {
+			//create the attributes for the circles
 			x: randomNum(canvas.width - gameSettings.maxSize),
 			y: randomNum(canvas.height - gameSettings.maxSize),
 			size: randomNum(gameSettings.maxSize) + 10,
@@ -43,18 +48,21 @@
 
 	function createCircles(n) {
 		for (i = 0; i < n; i++) {
+			//push the circles to the array
 			circles.push(createCircle());
 		}
 	}
 
 	function drawCircles() {
 		for (i = 0; i < circles.length; i++) {
+			//put the circles on the canvas
 			context.beginPath();
 			context.fillStyle = circles[i].color;
 			context.arc(circles[i].x,circles[i].y,circles[i].size,0,2 * Math.PI);
 			context.fill();
 			context.stroke();
 
+			//determine the direction the circle(s) drift
 			if (circles[i].driftDirection == 0) {
 				circles[i].x += circles[i].speed;
 			} else if (circles[i].driftDirection == 1) {
@@ -69,14 +77,17 @@
 
 	function reduceDuration() {
 		for (i = 0; i < circles.length; i++) {
+			//reduce the circles' duration
 			circles[i].duration--;
 			if (circles[i].duration <= 0) {
+				//when the duration is 0 or less a new circle is created
 				circles[i] = createCircle();
 			}
 		}
 	}
 
 	function runGame() {
+		//call the functions to run the game
 		context.clearRect(0,0,canvas.width,canvas.height);
 		drawCircles();
 		reduceDuration();
