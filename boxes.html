@@ -74,13 +74,9 @@
 			}
 
 			//make the circles bounce off the walls of the canvas
-			if (circles[i].x <= 0) {
+			if (circles[i].x <= 0 || circles[i].x >= (canvas.width - circles[i].size)) {
 				circles[i].speed = -circles[i].speed;
-			} else if (circles[i].x >= (canvas.width - circles[i].size)) {
-				circles[i].speed = -circles[i].speed;
-			} else if (circles[i].y <= 0) {
-				circles[i].speed = -circles[i].speed;
-			} else if (circles[i].y >= (canvas.height - circles[i].size)) {
+			} else if (circles[i].y <= 0 || circles[i].y >= (canvas.height - circles[i].size)) {
 				circles[i].speed = -circles[i].speed;
 			}
 		}
